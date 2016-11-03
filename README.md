@@ -1,5 +1,23 @@
 # Student Draw
-An app for randomly drawing (picking) students and showing their name drawings (images) for the [Digital Literacty Project](https://github.com/DigitalLiteracyProject).
+An app for randomly drawing (picking) students and showing their name drawings (images) for the [Digital Literacy Project](https://github.com/DigitalLiteracyProject).
+
+## Design
+
+### General Workflow
+
+1. The teacher logs in at `/admin`.
+2. The teacher creates a "class" using the interface at `/admin/create`.
+3. A class link `/class/<id>` is generated (e.g. `/class/vGq2fp`) and the teacher is redirected to admin interface at `/admin/class/<id>`.
+4. Students go to the link `/class/<id>`. Or go to `/` and enter class id there.
+5. Students input their name, customize it to their liking, and submit it to the server for approval using the interface at `/class/<id>`.
+6. The teacher either approves or denies (prompting students to try again) the drawings of names as they come in live at `/admin/class/<id>` admin interface.
+7. The teacher includes/excludes (e.g. for attendance) students at `/admin/class/<id>`, and configures how the random drawing will work (e.g. whether students should only ever be called once, etc.)
+8. The teacher (on own or different computer) goes to `/draw/<id>`, which presents the cold calling (drawing) interface.
+9. The teacher performs random drawings at `/draw/<id>`, causing names to animate in.
+
+### Additions
+
+* Allow students to customize their name *after* the intitial submission, potentially with **processingJS**.
 
 ## Getting Started for Users
 *Coming Soon!*

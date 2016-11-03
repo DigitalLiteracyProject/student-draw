@@ -1,9 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import {Router, Route, IndexRoute, Link, hashHistory} from 'react-router';
+import App, {PromptClass} from './App';
+import Student from './Student';
 import './index.css';
 
-ReactDOM.render(
-    <App />,
-    document.getElementById('root')
-);
+ReactDOM.render((
+    <Router history={hashHistory}>
+        <Route path="/" component={App}>
+            <IndexRoute component={PromptClass} />
+            <Route path="/class/:classId" component={Student} />
+        </Route>
+    </Router>
+), document.getElementById('root'));

@@ -1,0 +1,11 @@
+/* CSS styles for components in Draw */
+.draw-container {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.draw-button {
+    height: 85px;
+    width: 300px;
+}

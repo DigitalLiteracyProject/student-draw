@@ -11,7 +11,7 @@ ReactDOM.render((
         <Route path="/" component={App}>
             <IndexRoute component={PromptClass} />
             <Route path="/class/:classId" component={Student} />
-	    <Route path="/draw/:classId" component={Draw} />
+            <Route path="/draw/:classId" component={Draw} />
         </Route>
     </Router>
 ), document.getElementById('root'));

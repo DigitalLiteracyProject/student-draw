@@ -39,3 +39,7 @@ Teacher.sync({force: true}).then(function() {
         Student.sync({force: true});
     });
 });
+
+module.exports.Teacher = Teacher;
+module.exports.Student = Student;
+module.exports.Class = Class;

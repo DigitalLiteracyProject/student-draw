@@ -2,7 +2,20 @@ import React, { Component } from 'react';
 import './Student.css';
 import 'spectre.css/dist/spectre.min.css';
 
-class Student extends Component {
+export default class Student extends Component {
+    constructor() {
+	super();
+	this.state = {
+	    name: ""
+	};
+    }
+    
+    submit() {
+	console.log(this.state.name);
+	console.log(this.props.params.classId);
+	
+    }
+    
     render() {
         return (
             <div className="card main-form-card">
@@ -13,15 +26,13 @@ class Student extends Component {
                 <div className="card-body">
                     <div className="form-group">
                         <label className="form-label" htmlFor="input-name">Name</label>
-                        <input className="form-input" type="text" id="input-name" />
+                        <input className="form-input" type="text" id="input-name" value={this.state.name} onChange={(e) => this.setState({name: e.target.value})}/>
                     </div>
                 </div>
                 <div className="card-footer">
-                    <button className="btn btn-primary">Submit</button>
+                    <button className="btn btn-primary" onClick={() => this.submit()}>Submit</button>
                 </div>
             </div>
         );
     }
 }
-
-export default Student;

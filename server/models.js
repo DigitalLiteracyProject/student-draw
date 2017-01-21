@@ -34,9 +34,9 @@ var Student = db.define('student', {
     status: Sequelize.INTEGER
 });
 
-Teacher.sync({force: true}).then(function() {
-    Class.sync({force: true}).then(function() {
-        Student.sync({force: true});
+Teacher.sync().then(function() {
+    Class.sync().then(function() {
+        Student.sync();
     });
 });
 

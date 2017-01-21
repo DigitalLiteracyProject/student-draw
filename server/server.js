@@ -37,13 +37,6 @@ router.post("/student", function(req, res) {
     }
 });
 
-router.get("/student/:studentId", function(req, res) {
-    models.Student.findById(req.params.studentId)
-	  .then(function(student) {
-	      res.send(student);
-	  });
-});
-
 router.post("/teacher", function(req, res) {
     var b = req.body;
     if (b.name && b.email && b.password) {
@@ -110,6 +103,65 @@ router.post("/login", function(req, res) {
 	})
     } else {
 	res.status(400).send("Improper request for login.");
+    }
+});
+
+router.get("/class/:classId/students", function(req, res) {
+    var teacherId = req.session.loggedInTeacher;
+    if (!teacherId) {
+	return res.status(401).send("Need login as teacher.");
+    }
+    
+    var classId = parseInt(req.params.classId, 10);
+    if (classId) {
+	models.Student.findAll({
+	    attributes: ["id", "name", "status"],
+	    where: {
+		class: classId
+	    }
+	}).then(function(students) {
+	    res.send(JSON.stringify(students));
+	});
+    } else {
+	res.status(400).send("Invalid class id.");
+    }
+});
+
+router.get("/student/:studentId", function(req, res) {
+    var teacherId = req.session.loggedInTeacher;
+    if (!teacherId) {
+	return res.status(401).send("Need login as teacher.");
+    }
+
+    var studentId = parseInt(req.params.studentId, 10);
+    if (studentId) {
+	models.Student.findById(studentId).then(function(student) {
+	    res.send(JSON.stringify(student));
+	})
+    } else {
+	res.status(400).send("Invalid student id.");
+    }
+});
+
+router.post("/student/:studentId", function(req, res) {
+    var teacherId = req.session.loggedInTeacher;
+    if (!teacherId) {
+	return res.status(401).send("Need login as teacher.");
+    }
+
+    var studentId = parseInt(req.params.studentId, 10);
+    if (studentId) {
+	var b = req.body;
+	delete b.id;  // ensure no id updates
+	models.Student.update(b, {
+	    where: {
+		id: studentId
+	    }
+	}).then(function(student) {
+	    res.send();
+	});
+    } else {
+	res.status(400).send("Invalid student id.")
     }
 });
 

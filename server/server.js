@@ -1,20 +1,27 @@
 var Express = require("express");
+var Session = require("express-session");
 var Http = require("http");
 var BodyParser = require('body-parser');
+var Bcrypt = require('bcrypt');
+
+const SALT_ROUNDS = 12;
 
 var app = Express();
 var server = Http.createServer(app);
 var router = Express.Router();
 
-router.use(BodyParser.json());
+router.use(BodyParser.json({type: function() { return true; } }));
+
+app.use(Session({
+    secret: "verysecretfordebuggingonly",
+    resave: false,
+    saveUninitialized: true
+}));
 
 var models = require('./models');
 
-console.log(models.Student);
-
 router.post("/student", function(req, res) {
     var b = req.body;
-    console.log(b);
     if (b.name && b.drawing && b.class) {
 	models.Student.create({
 	    name: b.name,
@@ -22,18 +29,88 @@ router.post("/student", function(req, res) {
 	    class: b.class,
 	    status: 0
 	}).then(function(student) {
-	    console.log("created student " + student.id)
+	    console.log("created student " + student.id);
+	    res.send();
 	});
     } else {
-	req.status(400).send("Improper student request.");
+	res.status(400).send("Improper student request.");
     }
 });
 
 router.get("/student/:studentId", function(req, res) {
     models.Student.findById(req.params.studentId)
 	  .then(function(student) {
-	      req.send(student);
+	      res.send(student);
 	  });
+});
+
+router.post("/teacher", function(req, res) {
+    var b = req.body;
+    if (b.name && b.email && b.password) {
+	if (b.email.endsWith("@college.harvard.edu")) {
+	    Bcrypt.hash(b.password, SALT_ROUNDS, function(pwhashErr, pwhash) {
+		if (pwhashErr) {
+		    console.log("Password hashing failed.");
+		    res.status(500).send("Password hashing failed.");
+		} else {
+		    models.Teacher.create({
+			name: b.name,
+			email: b.email,
+			password: pwhash
+		    }).then(function(teacher) {
+			console.log("created teacher " + teacher.id);
+			res.send();
+		    })
+		}
+	    })
+	} else {
+	    res.status(400).send("Invalid email.");
+	}
+    } else {
+	res.status(400).send("Improper teacher request.");
+    }
+});
+
+router.post("/class", function(req, res) {
+    var teacherId = req.session.loggedInTeacher;
+    if (teacherId) {
+	models.Class.create({
+ 	    teacher: teacherId
+ 	}).then(function(cl) {
+ 	    res.send()
+ 	})
+    } else {
+	res.status(401).send("Need to login as teacher.");
+    }
+});
+
+router.post("/login", function(req, res) {
+    var b = req.body;
+    if (b.email && b.password) {
+	models.Teacher.findOne({
+	    where: {
+		email: b.email
+	    }
+	}).then(function(teacher) {
+	    if (teacher) {
+		Bcrypt.compare(b.password, teacher.password,
+			       function(pwhashErr, pwValid) {
+		    if (pwhashErr) {
+			res.status(500).send("Password hashing failed.");
+		    } else if (pwValid) {
+			req.session.loggedInTeacher = teacher.id;
+			res.send();
+		    } else {
+			res.status(400).send("Invalid email or password.");
+		    }
+		})
+	    } else {
+		res.status(400).send("Invalid email or password.");
+	    }
+	})
+    } else {
+	res.status(400).send("Improper request for login.");
+    }
 });
 
 app.use("/api", router);

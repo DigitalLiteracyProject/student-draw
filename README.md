@@ -53,4 +53,15 @@ The client is built with [React](https://facebook.github.io/react/) using boiler
         npm run build
 
 ### Server
-*Coming Soon!*
+
+The server is built with [Node.js](https://nodejs.org/en/), [Express](http://expressjs.com/), and [Sequelize](http://docs.sequelizejs.com/en/v3/). This makes this app full-stack JavaScript and therefore the process for getting started with the server is similar to that of the client:
+
+1. Ensure you have Node.
+2. Clone this repo (or cd to the already cloned repo).
+3. cd to the `server/` directory.
+3. Install the required dependencies with `npm install`.
+4. Start the server with `npm start`.
+
+*Proxying requests*: As this is a client-side inflated app, the server essentially has no interface and only exposes an API at `/api` by default on `localhost:3001`. As the React (Webpack-based) development server is nice for developing the client and due to the Same-Origin policy of browsers, it is desirable/necessary to proxy requests to the server API through the React development server. This has been set up in `client/package.json` appropriately for the server running at `localhost:3001`.
+
+*Database*: The server stores (creates/updates as necessary) an SQLite database file `student_draw.db` in the working directory. In order to aid development, an SQLite database viewer such as [DB Browser for SQLite](http://sqlitebrowser.org/) may be handy to verify server workings.

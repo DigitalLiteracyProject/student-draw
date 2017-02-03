@@ -1,6 +1,4 @@
 import React, {Component} from 'react';
-import './Draw.css';
-import 'spectre.css/dist/spectre.min.css';
 
 export default class Draw extends Component {
     constructor() {

@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import './App.css';
-import 'spectre.css/dist/spectre.min.css';
 
 export default class App extends Component {
     render() {

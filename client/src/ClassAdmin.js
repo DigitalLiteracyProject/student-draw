@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import 'spectre.css/dist/spectre.min.css';
 import { ajax } from './helpers';
-import './ClassAdmin.css'
 
 export default class ClassAdmin extends Component {
     constructor() {

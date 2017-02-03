@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import './Student.css';
-import 'spectre.css/dist/spectre.min.css';
 
 export default class Student extends Component {
     constructor() {

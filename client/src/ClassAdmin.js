@@ -34,7 +34,7 @@ export default class ClassAdmin extends Component {
                         <div className="card-header">
                             <h4 className="card-title">Queue</h4>
                         </div>
-                        <div className="student-list">
+                        <div className="class-admin-student-list">
                             <table className="table table-striped table-hover">
                                 <tbody>{queue}</tbody>
                             </table>
@@ -44,7 +44,7 @@ export default class ClassAdmin extends Component {
                         <div className="card-header">
                             <h4 className="card-title">Students</h4>
                         </div>
-                        <div className="student-list">
+                        <div className="class-admin-student-list">
                             <table className="table table-striped table-hover">
                                 <tbody>{students}</tbody>
                             </table>

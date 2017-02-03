@@ -38,8 +38,9 @@
     max-width: 500px;
 }
 
-.toast {
+.main-form-toast {
     max-width: 500px;
+    margin-bottom: 10px;
 }
 
 .draw-container {
@@ -53,11 +54,7 @@
     width: 300px;
 }
 
-.card {
-    margin-right: 10px;
-}
-
-.student-list {
+.class-admin-student-list {
     margin-top: 20px;
     margin-left: 20px;
     margin-right: 20px;

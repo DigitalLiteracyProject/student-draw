@@ -10,13 +10,13 @@ import 'spectre.css/dist/spectre.min.css';
 import './index.css';
 
 ReactDOM.render((
-    <Router history={hashHistory}>
-        <Route path="/" component={App}>
-            <IndexRoute component={PromptClass} />
-            <Route path="/login" component={Login} />
-            <Route path="/class/:classId" component={Student} />
-            <Route path="/draw/:classId" component={Draw} />
-            <Route path="/admin/class/:classId" component={ClassAdmin} />
-        </Route>
-    </Router>
+  <Router history={hashHistory}>
+    <Route path="/" component={App}>
+      <IndexRoute component={PromptClass} />
+      <Route path="/login" component={Login} />
+      <Route path="/class/:classId" component={Student} />
+      <Route path="/draw/:classId" component={Draw} />
+      <Route path="/admin/class/:classId" component={ClassAdmin} />
+    </Route>
+  </Router>
 ), document.getElementById('root'));

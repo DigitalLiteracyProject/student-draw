@@ -1,62 +1,62 @@
 .top-bar {
-    background-color: #efefef;
-    margin-top: 0;
-    margin-bottom: 15px;
-    padding: 20px;
+  background-color: #efefef;
+  margin-top: 0;
+  margin-bottom: 15px;
+  padding: 20px;
 }
 
 .top-bar h1 {
-    font-size: 28px;
-    margin-top: 0;
-    margin-bottom: 0;
+  font-size: 28px;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 .main-container {
-    margin-top: 30px;
-    margin-left: auto;
-    margin-right: auto;
-    width: 80%;
+  margin-top: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
 }
 
 @media (min-width: 1200px) {
-    .main-container {
-        margin-top: 35px;
-        width: 65%;
-    }
+  .main-container {
+    margin-top: 35px;
+    width: 65%;
+  }
 }
 
 @media (max-width: 400px) {
-    .main-container {
-        margin-top: 15px;
-        padding-left: 15px;
-        padding-right: 15px;
-        width: 100%;
-    }
+  .main-container {
+    margin-top: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 100%;
+  }
 }
 
 .main-form-card {
-    max-width: 500px;
+  max-width: 500px;
 }
 
 .main-form-toast {
-    max-width: 500px;
-    margin-bottom: 10px;
+  max-width: 500px;
+  margin-bottom: 10px;
 }
 
 .draw-container {
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .draw-button {
-    height: 85px;
-    width: 300px;
+  height: 85px;
+  width: 300px;
 }
 
 .class-admin-student-list {
-    margin-top: 20px;
-    margin-left: 20px;
-    margin-right: 20px;
-    margin-bottom: 20px;
+  margin-top: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 20px;
 }

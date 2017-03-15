@@ -165,5 +165,25 @@ router.post("/student/:studentId", function(req, res) {
   }
 });
 
+router.post("/remove/student/:studentId", function(req, res) {
+  var teacherId = req.session.loggedInTeacher;
+  if (!teacherId) {
+    return res.status(401).send("Need login as teacher.");
+  }
+
+  var studentId = parseInt(req.params.studentId, 10);
+  if (studentId) {
+    models.Student.destroy({
+      where: {
+	id: studentId
+      }
+    }).then(function(student) {
+      res.send();
+    });
+  } else {
+    res.status(400).send("Invalid student id.")
+  }
+});
+
 app.use("/api", router);
 server.listen(3001);

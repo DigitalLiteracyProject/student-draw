@@ -54,6 +54,10 @@
   width: 300px;
 }
 
+.class-admin-queue-td {
+  float: right;
+}
+
 .class-admin-student-list {
   margin-top: 20px;
   margin-left: 20px;

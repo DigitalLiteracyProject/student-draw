@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { ajax } from './helpers';
+import { hashHistory } from 'react-router';
 
 export default class Draw extends Component {
   constructor() {
@@ -19,6 +20,7 @@ export default class Draw extends Component {
          }.bind(this),
          function(err) {
            console.log(err);
+           hashHistory.push('/login');
          }.bind(this));
   }
 
